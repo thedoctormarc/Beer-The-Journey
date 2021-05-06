@@ -7,7 +7,8 @@ public enum CHAR_STATES
 {
     IDLE,
     WALKING_FORWARD,
-    STOP
+    LEFT,
+    RIGHT
 }
 public class CharacterLogic : MonoBehaviour
 {
@@ -54,28 +55,28 @@ public class CharacterLogic : MonoBehaviour
 
                 break;
 
-            case CHAR_STATES.STOP:
+            case CHAR_STATES.LEFT:
+
+                //Vector3 rotate = new Vector3(0,-90,0);
+
+                //transform.localRotation = Quaternion.Euler(0, -90, 0);
+                transform.rotation = Quaternion.Euler(0f, -90, 0f);
+
+                curr_state = CHAR_STATES.IDLE;
+ 
+                break;
+
+            case CHAR_STATES.RIGHT:
+                //Vector3 rotate = new Vector3(0, 90, 0);
+
+                transform.localRotation = Quaternion.Euler(0, -90, 0);
+               // hipJoint.targetRotation = Quaternion.Euler(0f, 90, 0f);
+
+                hipRigidBody.AddTorque(0f, 90, 0f,ForceMode.Force);
+
+                curr_state = CHAR_STATES.IDLE;
                 break;
         }
-        //float x = Input.GetAxisRaw("Horizontal");
-        //float y = Input.GetAxisRaw("Vertical");
 
-        //Debug.Log("X: " + x + "   Y: " +  y);
-
-        //Vector3 dir = new Vector3(x, 0f, y).normalized;
-
-        //if (dir.magnitude >= 0.1f)
-        //{
-        //    float targetAngle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
-        //    hipJoint.targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
-        //    hipRigidBody.AddForce(dir * speed);
-        //    walk = true;
-        //}
-        //else
-        //{
-        //    walk = false;
-        //}
-
-        //animator.SetBool("walk", walk);
     }
 }

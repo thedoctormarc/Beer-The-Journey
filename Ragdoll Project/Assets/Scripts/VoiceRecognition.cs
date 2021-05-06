@@ -20,7 +20,8 @@ public class VoiceRecognition : MonoBehaviour
 
         actions.Add("adelante", Forward);
         actions.Add("stop", StopAction);
-        actions.Add("back", Back);
+        actions.Add("left", Left);
+        actions.Add("right", Right);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
@@ -54,22 +55,22 @@ public class VoiceRecognition : MonoBehaviour
         transform.Translate(0, -1, 0);
     }
 
-    private void Derecha()
+    private void Right()
     {
-        transform.Rotate(0.0f, 45.0f, 0.0f, Space.Self);
+        character_logic.SetCharacterState(CHAR_STATES.RIGHT);
     }
-    private void Izquierda()
+    private void Left()
     {
-        transform.Rotate(0.0f, -45.0f, 0.0f, Space.Self);
+        character_logic.SetCharacterState(CHAR_STATES.LEFT);
     }
 
-    private void Arriba()
-    {
-        transform.Rotate(0.0f, 0.0f, 45.0f, Space.Self);
-    }
-    private void Abajo()
-    {
-        transform.Rotate(0.0f, 0.0f, -45.0f, Space.Self);
-    }
+    //private void Arriba()
+    //{
+    //    transform.Rotate(0.0f, 0.0f, 45.0f, Space.Self);
+    //}
+    //private void Abajo()
+    //{
+    //    transform.Rotate(0.0f, 0.0f, -45.0f, Space.Self);
+    //}
 }
 
