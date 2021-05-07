@@ -1198,6 +1198,7 @@ MonoBehaviour:
   hipJoint: {fileID: 2986935142060720251}
   hipRigidBody: {fileID: 4497894200280258221}
   animator: {fileID: 3968750874971586924}
+  player: {fileID: 3650962582387178577}
 --- !u!114 &1279741982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3833,18 +3834,18 @@ ConfigurableJoint:
     positionSpring: 0
     positionDamper: 0
     maximumForce: 3.4028233e+38
-  m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_TargetRotation: {x: -0.00045978994, y: 0.008717451, z: -0.024153436, w: 0.9996702}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 100000
-    positionDamper: 0
+    positionSpring: 0
+    positionDamper: 1e+14
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 100000
-    positionDamper: 0
+    positionSpring: 0
+    positionDamper: 1e+9
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -3857,7 +3858,7 @@ ConfigurableJoint:
   m_ConfiguredInWorldSpace: 0
   m_SwapBodies: 0
   m_BreakForce: Infinity
-  m_BreakTorque: Infinity
+  m_BreakTorque: 100
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
@@ -4316,13 +4317,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig1:Hips'\n\tTransform 'mixamorig1:LeftHandThumb1'\n\tTransform
-    'mixamorig1:LeftHandPinky2'\n\tTransform 'mixamorig1:RightHand'\n\tTransform
-    'mixamorig1:LeftHandMiddle2'\n\tTransform 'mixamorig1:RightFoot'\n\tTransform
-    'mixamorig1:Spine1'\n\tTransform 'mixamorig1:RightLeg'\n\tTransform 'mixamorig1:RightHandMiddle2'\n\tTransform
-    'mixamorig1:Hips'\n\tand more ...\n\tFrom animation clip 'drunk turn right'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0

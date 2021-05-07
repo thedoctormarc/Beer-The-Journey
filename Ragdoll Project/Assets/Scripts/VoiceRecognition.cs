@@ -29,8 +29,11 @@ public class VoiceRecognition : MonoBehaviour
     }
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {
+
         Debug.Log(speech.text);
-        actions[speech.text].Invoke();
+
+        if(character_logic.GetState() != CHAR_STATES.DOING_ACTION)
+            actions[speech.text].Invoke();
     }
 
     private void Forward()

@@ -8,7 +8,8 @@ public enum CHAR_STATES
     IDLE,
     WALKING_FORWARD,
     LEFT,
-    RIGHT
+    RIGHT,
+    DOING_ACTION
 }
 public class CharacterLogic : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class CharacterLogic : MonoBehaviour
     Rigidbody hipRigidBody;
     [SerializeField]  
     Animator animator;
+    [SerializeField]
+    GameObject player;
 
     bool walk = false;
 
@@ -46,7 +49,7 @@ public class CharacterLogic : MonoBehaviour
                 break;
             case CHAR_STATES.WALKING_FORWARD:
 
-                Vector3 localForward = transform.worldToLocalMatrix.MultiplyVector(transform.forward);
+                Vector3 localForward = player.transform.worldToLocalMatrix.MultiplyVector(transform.forward);
                 Vector3 direction = localForward.normalized;
                 float targetAngle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
                 hipJoint.targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
@@ -60,23 +63,65 @@ public class CharacterLogic : MonoBehaviour
                 //Vector3 rotate = new Vector3(0,-90,0);
 
                 //transform.localRotation = Quaternion.Euler(0, -90, 0);
-                transform.rotation = Quaternion.Euler(0f, -90, 0f);
 
-                curr_state = CHAR_STATES.IDLE;
+                StartCoroutine(TurnLeft());
+                curr_state = CHAR_STATES.DOING_ACTION;
  
                 break;
 
             case CHAR_STATES.RIGHT:
                 //Vector3 rotate = new Vector3(0, 90, 0);
+                //animator.SetBool("right", true);
+                //player.transform.localRotation = Quaternion.Euler(0, 90, 0);
+                //hipJoint.targetRotation = Quaternion.Euler(0f, 90, 0f);
+                //hipJoint.breakTorque = 100f;
 
-                transform.localRotation = Quaternion.Euler(0, -90, 0);
-               // hipJoint.targetRotation = Quaternion.Euler(0f, 90, 0f);
+                //hipRigidBody.AddTorque(0f, 90, 0f,ForceMode.Force);
 
-                hipRigidBody.AddTorque(0f, 90, 0f,ForceMode.Force);
+                StartCoroutine(TurnRight());
+                curr_state = CHAR_STATES.DOING_ACTION;
+                break;
 
-                curr_state = CHAR_STATES.IDLE;
+            case CHAR_STATES.DOING_ACTION:
+                
+
                 break;
         }
 
     }
+
+    IEnumerator TurnRight()
+    {
+        animator.SetBool("right", true);
+        float tmp = player.transform.eulerAngles.y;
+        float rotation = tmp + 90;
+        while(tmp <= rotation)
+        {
+            tmp += 0.25f;
+            //hipJoint.targetRotation = Quaternion.Euler(0f, tmp, 0f);
+            player.transform.rotation = Quaternion.Euler(0f, tmp, 0f);
+            yield return null;
+        }
+        animator.SetBool("right", false);
+        curr_state = CHAR_STATES.IDLE;
+    }
+
+    IEnumerator TurnLeft()
+    {
+       // animator.SetBool("right", true);
+        float tmp = player.transform.eulerAngles.y;
+        float rotation = tmp - 90;
+        while (tmp >= rotation)
+        {
+            tmp -= 0.25f;
+            //hipJoint.targetRotation = Quaternion.Euler(0f, tmp, 0f);
+            player.transform.rotation = Quaternion.Euler(0f, tmp, 0f);
+            yield return null;
+        }
+        //animator.SetBool("right", false);
+        curr_state = CHAR_STATES.IDLE;
+    }
+
+
+    public CHAR_STATES GetState() => curr_state;
 }
