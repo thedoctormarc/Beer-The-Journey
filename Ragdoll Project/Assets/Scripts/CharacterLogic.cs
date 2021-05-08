@@ -55,7 +55,6 @@ public class CharacterLogic : MonoBehaviour
                 hipJoint.targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
                 hipRigidBody.AddForce(direction * speed);
                 animator.SetBool("walk", true);
-
                 break;
 
             case CHAR_STATES.LEFT:
@@ -83,13 +82,11 @@ public class CharacterLogic : MonoBehaviour
                 break;
 
             case CHAR_STATES.DOING_ACTION:
-                
-
                 break;
         }
 
     }
-
+   
     IEnumerator TurnRight()
     {
         animator.SetBool("right", true);
