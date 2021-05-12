@@ -17,4 +17,17 @@ public class Car_Script : MonoBehaviour
     {
         transform.position += transform.worldToLocalMatrix.MultiplyVector(new Vector3(0,0,-1f))*speed*Time.deltaTime;
     }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if(collision.gameObject.GetComponentInParent<CharacterLogic>() != null)
+        {
+            Vector3 dir = transform.position - collision.gameObject.transform.position;
+
+            dir = -dir.normalized;
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(dir*200, ForceMode.Impulse);
+        }
+    }
 }
