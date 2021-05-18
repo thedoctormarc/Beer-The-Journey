@@ -49,8 +49,9 @@ public class CharacterLogic : MonoBehaviour
                 break;
             case CHAR_STATES.WALKING_FORWARD:
 
-                Vector3 localForward = player.transform.worldToLocalMatrix.MultiplyVector(transform.forward);
+                Vector3 localForward = player.transform.worldToLocalMatrix.MultiplyVector(player.transform.forward);
                 Vector3 direction = localForward.normalized;
+                Debug.Log("direction" + direction);
                 float targetAngle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
                 hipJoint.targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
                 hipRigidBody.AddForce(direction * speed);
