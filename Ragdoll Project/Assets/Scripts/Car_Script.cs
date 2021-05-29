@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BansheeGz.BGSpline.Curve;
+using BansheeGz.BGSpline.Components;
 
 public class Car_Script : MonoBehaviour
 {
-    // Start is called before the first frame update
-
+    [SerializeField]
+    GameObject curve_go;
+    BGCcMath curve_math;
+    [SerializeField]
     float speed;
+    float distanceAlongCurve;
     void Start()
     {
-        speed = Random.Range(3.0f, 8.0f);
+        curve_math = curve_go.GetComponent<BGCcMath>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Provisional
-        transform.position += transform.worldToLocalMatrix.MultiplyVector(new Vector3(0,0,-1f))*speed*Time.deltaTime;
+        distanceAlongCurve += speed * Time.deltaTime;
+        Vector3 tangent;
+        transform.position = curve_math.CalcPositionAndTangentByDistance(distanceAlongCurve, out tangent);
+        transform.rotation = Quaternion.LookRotation(tangent);
     }
 
 
