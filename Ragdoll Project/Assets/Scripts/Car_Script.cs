@@ -6,6 +6,8 @@ using BansheeGz.BGSpline.Components;
 
 public class Car_Script : MonoBehaviour
 {
+    public enum State { CIRCULATING, STOPPING, STOPPED, ACCELERATING}
+    State state;
     [SerializeField]
     GameObject curve_go;
     BGCurve curve;
@@ -15,6 +17,7 @@ public class Car_Script : MonoBehaviour
     float distanceAlongCurve;
     void Start()
     {
+        state = State.CIRCULATING;
         curve_math = curve_go.GetComponent<BGCcMath>();
         curve = curve_go.GetComponent<BGCurve>();
 
@@ -42,7 +45,7 @@ public class Car_Script : MonoBehaviour
         transform.position = curve_math.CalcPositionAndTangentByDistance(distanceAlongCurve, out tangent);
         transform.rotation = Quaternion.LookRotation(tangent);
 
-        if (distanceAlongCurve > curve_math.GetDistance(curve.Points.Length))
+        if (distanceAlongCurve > curve_math.GetDistance())
         {
             distanceAlongCurve = 0f;
         }
