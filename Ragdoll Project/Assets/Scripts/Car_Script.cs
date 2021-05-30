@@ -15,6 +15,8 @@ public class Car_Script : MonoBehaviour
     float currentSpeed;
     float distanceAlongCurve;
     float currentAccelTime;
+    GameObject carInFront;
+    public int intersectionPosition = 0;
 
     private void Awake()
     {
@@ -82,6 +84,10 @@ public class Car_Script : MonoBehaviour
 
             if (car != null)
             {
+                carInFront = car.gameObject;
+
+                intersectionPosition = 1 + car.intersectionPosition;
+
                 if (car.state == State.STOPPED || car.state == State.STOPPING)
                 {
                     float dist = (hit.point - transform.position).magnitude;
@@ -195,13 +201,19 @@ public class Car_Script : MonoBehaviour
             if (go == curve_go)
             {
                 if (state == State.STOPPED || state == State.STOPPING)
-                    state = State.ACCELERATING;
+                    Invoke("TriggerAccelerate", intersectionPosition * CarManager.instance.accelDelay);
 
                 return;
             }
         }
     }
 
+
+    void TriggerAccelerate()
+    {
+        intersectionPosition = 0;
+        state = State.ACCELERATING;
+    }
 
 
 }

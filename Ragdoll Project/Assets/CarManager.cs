@@ -8,6 +8,7 @@ public class CarManager : MonoBehaviour
     public AnimationCurve accelCurve, deAccelCurve;
     public float topSpeed = 8f;
     public float slowDownDistance = 15f;
+    public float accelDelay = 1.5f;
 
     void Awake()
     {
