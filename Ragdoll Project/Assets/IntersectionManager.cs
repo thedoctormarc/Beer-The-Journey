@@ -7,7 +7,7 @@ public class IntersectionManager : MonoBehaviour
     public static IntersectionManager instance;
 
 
-    public delegate void OnSwap(GameObject[] activeCurves, GameObject[] inActiveCurves);
+    public delegate void OnSwap(Vector3 intersectionPos, GameObject[] activeCurves, GameObject[] inActiveCurves);
     public event OnSwap OnSwapEvent;
 
     private void Awake()
@@ -27,8 +27,9 @@ public class IntersectionManager : MonoBehaviour
         
     }
 
-    public void OnSwapIntersection (GameObject[] activeCurves, GameObject[] inActiveCurves)
+    public void OnSwapIntersection (Vector3 intersectionPos, GameObject[] activeCurves, GameObject[] inActiveCurves)
     {
-        OnSwapEvent(activeCurves, inActiveCurves);
+        OnSwapEvent(intersectionPos, activeCurves, inActiveCurves);
     }
+
 }

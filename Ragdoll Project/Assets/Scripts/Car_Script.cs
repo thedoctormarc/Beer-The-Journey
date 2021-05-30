@@ -49,6 +49,7 @@ public class Car_Script : MonoBehaviour
 
     void Update()
     {
+        CheckFront();
         HandleSpeed();
 
         distanceAlongCurve += currentSpeed * Time.deltaTime;
@@ -61,6 +62,50 @@ public class Car_Script : MonoBehaviour
             distanceAlongCurve = 0f;
         }
 
+    }
+
+    // Stop if intersection or stopped car in front
+    void CheckFront()
+    {
+        if (state != State.CIRCULATING)
+            return;
+
+        RaycastHit hit;
+        Vector3 offset = new Vector3(0f, 0.65f, 0f);
+
+        Debug.DrawLine(transform.position + offset, transform.position + offset + transform.forward * CarManager.instance.slowDownDistance, Color.red);
+
+        if (Physics.Raycast(transform.position + offset, transform.forward, out hit))
+        {
+            Car_Script car = hit.transform.gameObject.GetComponent<Car_Script>();
+            Intersection inter = hit.transform.gameObject.GetComponent<Intersection>();
+
+            if (car != null)
+            {
+                if (car.state == State.STOPPED || car.state == State.STOPPING)
+                {
+                    float dist = (hit.point - transform.position).magnitude;
+                    if (dist <= CarManager.instance.slowDownDistance)
+                    {
+                        state = State.STOPPING;
+                    }
+                }
+            }
+            else if (inter != null)
+            {
+                // Stop in intersection!!
+                if (inter.isCurveActive(curve_go) == false)
+                {
+                    float dist = (hit.point - transform.position).magnitude;
+                    if (dist <= CarManager.instance.slowDownDistance)
+                    {
+                        state = State.STOPPING;
+                    }
+
+                }
+                    
+            }
+        }
     }
 
     void HandleSpeed ()
@@ -109,32 +154,56 @@ public class Car_Script : MonoBehaviour
         }
     }
 
-    private void OnIntersectionSwap(GameObject[] activeCurves, GameObject[] inActiveCurves)
+    bool IsCloseToIntersection()
     {
+        RaycastHit hit;
 
-        if (state == State.CIRCULATING)
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-            foreach (GameObject go in inActiveCurves)
+            if (hit.transform.gameObject.GetComponent<Intersection>() != null)
             {
-                if (go == curve_go)
+                float dist = (hit.point - transform.position).magnitude;
+                if (dist <= CarManager.instance.slowDownDistance)
                 {
-                    state = State.STOPPING;
-                    return;
+                    return true;
                 }
             }
         }
-        else if (state == State.STOPPED)
+
+        return false;
+    }
+
+    private void OnIntersectionSwap(Vector3 intersectionPos, GameObject[] activeCurves, GameObject[] inActiveCurves)
+    {
+        foreach (GameObject go in inActiveCurves)
         {
-            foreach (GameObject go in activeCurves)
+            if (go == curve_go)
             {
-                if (go == curve_go)
+                // Im too far
+                if (IsCloseToIntersection())
                 {
-                    state = State.ACCELERATING;
-                    return;
+                    if (state == State.CIRCULATING)
+                        state = State.STOPPING;
                 }
+
+                return;
+            }
+        }
+
+        foreach (GameObject go in activeCurves)
+        {
+            if (go == curve_go)
+            {
+                if (state == State.STOPPED || state == State.STOPPING)
+                    state = State.ACCELERATING;
+
+                return;
             }
         }
     }
+
+
+
 }
 
 
