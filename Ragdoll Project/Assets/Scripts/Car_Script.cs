@@ -72,30 +72,58 @@ public class Car_Script : MonoBehaviour
         if (state != State.CIRCULATING)
             return;
 
-        RaycastHit hit;
+        Vector3 fw_right = (transform.forward + transform.right).normalized;
+        Vector3 fw_right2 = (transform.forward + fw_right).normalized;
+        Vector3 fw_right3 = (transform.forward + fw_right2).normalized;
+        Vector3 fw_right4 = (fw_right2 + fw_right).normalized;
+        Vector3 fw_left = (transform.forward - transform.right).normalized;
+        Vector3 fw_left2 = (transform.forward + fw_left).normalized;
+        Vector3 fw_left3 = (transform.forward + fw_left2).normalized;
+        Vector3 fw_left4 = (fw_left2 + fw_left).normalized;
+
+        RaycastFront(transform.forward);
+        RaycastFront(fw_right);
+        RaycastFront(fw_right2);
+        RaycastFront(fw_right3);
+        RaycastFront(fw_right4);
+        RaycastFront(fw_left);
+        RaycastFront(fw_left2);
+        RaycastFront(fw_left3);
+        RaycastFront(fw_left4);
+
+    }
+
+    void RaycastFront(Vector3 direction)
+    {
         Vector3 offset = new Vector3(0f, 0.65f, 0f);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position + offset, direction);
 
-        Debug.DrawLine(transform.position + offset, transform.position + offset + transform.forward * CarManager.instance.slowDownDistance, Color.red);
+        Debug.DrawLine(transform.position + offset, transform.position + offset + direction * CarManager.instance.slowDownDistance, Color.red);
 
-        if (Physics.Raycast(transform.position + offset, transform.forward, out hit))
+        foreach (var hit in hits)
         {
             Car_Script car = hit.transform.gameObject.GetComponent<Car_Script>();
             Intersection inter = hit.transform.gameObject.GetComponent<Intersection>();
 
             if (car != null)
             {
-                carInFront = car.gameObject;
-
-                intersectionPosition = 1 + car.intersectionPosition;
-
-                if (car.state == State.STOPPED || car.state == State.STOPPING)
+                if (car.curve_go == curve_go) // only detect in the same lane
                 {
-                    float dist = (hit.point - transform.position).magnitude;
-                    if (dist <= CarManager.instance.slowDownDistance)
+                    carInFront = car.gameObject;
+
+                    intersectionPosition = 1 + car.intersectionPosition;
+
+                    if (car.state == State.STOPPED || car.state == State.STOPPING)
                     {
-                        state = State.STOPPING;
+                        float dist = (hit.point - transform.position).magnitude;
+                        if (dist <= CarManager.instance.slowDownDistance)
+                        {
+                            state = State.STOPPING;
+                            return;
+                        }
                     }
                 }
+           
             }
             else if (inter != null)
             {
@@ -106,13 +134,15 @@ public class Car_Script : MonoBehaviour
                     if (dist <= CarManager.instance.slowDownDistance)
                     {
                         state = State.STOPPING;
+                        return;
                     }
 
                 }
-                    
+
             }
         }
     }
+
 
     void HandleSpeed ()
     {
