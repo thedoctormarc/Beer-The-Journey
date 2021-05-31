@@ -7,7 +7,11 @@ using BansheeGz.BGSpline.Components;
 public class Car_Script : MonoBehaviour
 {
     public enum State { CIRCULATING, STOPPING, STOPPED, ACCELERATING }
+
+ //   [HideInInspector]
     public State state;
+    [HideInInspector]
+    public State previousState;
     [SerializeField]
     GameObject curve_go;
     BGCurve curve;
@@ -15,8 +19,12 @@ public class Car_Script : MonoBehaviour
     float currentSpeed;
     float distanceAlongCurve;
     float currentAccelTime;
+    [SerializeField]
     GameObject carInFront;
+  //  [HideInInspector]
     public int intersectionPosition = 0;
+    bool trackCarInFront = false;
+
 
     private void Awake()
     {
@@ -49,8 +57,11 @@ public class Car_Script : MonoBehaviour
         distanceAlongCurve = curve_math.GetDistance(closest_index);
     }
 
+  
     void Update()
     {
+        previousState = state;
+
         CheckFront();
         HandleSpeed();
 
@@ -64,6 +75,36 @@ public class Car_Script : MonoBehaviour
             distanceAlongCurve = 0f;
         }
 
+    }
+
+    private void LateUpdate()
+    {
+
+        if (trackCarInFront)
+        {
+            if (CarInFrontBeganAccelerating())
+            {
+                trackCarInFront = false;
+                Invoke("DoAccelerate", CarManager.instance.accelDelay);
+            }
+        }
+
+    }
+
+    // Used when I am still circulating when the next intersection is triggered. Schedule acceleration once the car in front does so
+    bool CarInFrontBeganAccelerating()
+    {
+        if (carInFront == null)
+        {
+            return false;
+        }
+        // check that the other car begun accelerating last frame
+        Car_Script car = carInFront.GetComponent<Car_Script>();
+
+        if (car.state == State.ACCELERATING && car.previousState != State.ACCELERATING)
+            return true;
+
+        return false;
     }
 
     // Stop if intersection or stopped car in front
@@ -81,22 +122,33 @@ public class Car_Script : MonoBehaviour
         Vector3 fw_left3 = (transform.forward + fw_left2).normalized;
         Vector3 fw_left4 = (fw_left2 + fw_left).normalized;
 
-        RaycastFront(transform.forward);
-        RaycastFront(fw_right);
-        RaycastFront(fw_right2);
-        RaycastFront(fw_right3);
-        RaycastFront(fw_right4);
-        RaycastFront(fw_left);
-        RaycastFront(fw_left2);
-        RaycastFront(fw_left3);
-        RaycastFront(fw_left4);
+        if (RaycastFront(transform.forward))
+            return;
+        if (RaycastFront(fw_right))
+            return;
+        if (RaycastFront(fw_right2))
+            return;
+        if (RaycastFront(fw_right3))
+            return;
+        if (RaycastFront(fw_right4))
+            return;
+        if (RaycastFront(fw_left))
+            return;
+        if (RaycastFront(fw_left2))
+            return;
+        if (RaycastFront(fw_left3))
+            return;
+        if (RaycastFront(fw_left4))
+            return;
+
+
 
     }
 
-    void RaycastFront(Vector3 direction)
+    bool RaycastFront(Vector3 direction) // Careful that this does not interpret further cars rather than the one in front
     {
         Vector3 offset = new Vector3(0f, 0.65f, 0f);
-        RaycastHit[] hits = Physics.RaycastAll(transform.position + offset, direction);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position + offset, direction, CarManager.instance.slowDownDistance);
 
         Debug.DrawLine(transform.position + offset, transform.position + offset + direction * CarManager.instance.slowDownDistance, Color.red);
 
@@ -109,17 +161,20 @@ public class Car_Script : MonoBehaviour
             {
                 if (car.curve_go == curve_go) // only detect in the same lane
                 {
-                    carInFront = car.gameObject;
 
-                    intersectionPosition = 1 + car.intersectionPosition;
+                    if (carInFront == null)
+                        carInFront = car.gameObject;
+                    else if (car.gameObject != carInFront)
+                        continue;
 
                     if (car.state == State.STOPPED || car.state == State.STOPPING)
                     {
                         float dist = (hit.point - transform.position).magnitude;
                         if (dist <= CarManager.instance.slowDownDistance)
                         {
+                            intersectionPosition = 1 + car.intersectionPosition;
                             state = State.STOPPING;
-                            return;
+                            return true;
                         }
                     }
                 }
@@ -134,13 +189,15 @@ public class Car_Script : MonoBehaviour
                     if (dist <= CarManager.instance.slowDownDistance)
                     {
                         state = State.STOPPING;
-                        return;
+                        return true;
                     }
 
                 }
 
             }
         }
+
+        return false;
     }
 
 
@@ -230,19 +287,30 @@ public class Car_Script : MonoBehaviour
         {
             if (go == curve_go)
             {
-                if (state == State.STOPPED || state == State.STOPPING)
-                    Invoke("TriggerAccelerate", intersectionPosition * CarManager.instance.accelDelay);
-
-                return;
+                Invoke("TriggerAccelerate", intersectionPosition * CarManager.instance.accelDelay);
             }
         }
+    }
+
+    void DoAccelerate()
+    {
+        intersectionPosition = 0;
+        state = State.ACCELERATING;
     }
 
 
     void TriggerAccelerate()
     {
-        intersectionPosition = 0;
-        state = State.ACCELERATING;
+
+        if (state == State.STOPPED || state == State.STOPPING) // arrived to intersection already
+        {
+            DoAccelerate();
+        }
+        else // did not arrive, still circulating --> wait for car in front to begin accelerating
+        {
+            trackCarInFront = true;
+        }
+
     }
 
 
