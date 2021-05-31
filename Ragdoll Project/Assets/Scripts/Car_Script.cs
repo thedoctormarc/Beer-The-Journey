@@ -188,6 +188,11 @@ public class Car_Script : MonoBehaviour
                     float dist = (hit.point - transform.position).magnitude;
                     if (dist <= CarManager.instance.slowDownDistance)
                     {
+                        bool tooLate = TooLateToBreak(inter.transform.position);
+
+                        if (tooLate)
+                            continue;
+
                         state = State.STOPPING;
                         return true;
                     }
@@ -266,13 +271,19 @@ public class Car_Script : MonoBehaviour
         return false;
     }
 
+    bool TooLateToBreak(Vector3 intersectionPos) => (intersectionPos - transform.position).magnitude <= CarManager.instance.ignoreIntersectionDistance;
+
     private void OnIntersectionSwap(Vector3 intersectionPos, GameObject[] activeCurves, GameObject[] inActiveCurves)
     {
         foreach (GameObject go in inActiveCurves)
         {
             if (go == curve_go)
             {
-                // Im too far
+                bool tooLate = TooLateToBreak(intersectionPos);
+
+                if (tooLate)
+                    return;
+
                 if (IsCloseToIntersection())
                 {
                     if (state == State.CIRCULATING)
