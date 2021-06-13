@@ -9,7 +9,8 @@ public enum CHAR_STATES
     WALKING_FORWARD,
     LEFT,
     RIGHT,
-    DOING_ACTION
+    DOING_ACTION,
+    KICK
 }
 public class CharacterLogic : MonoBehaviour
 {
@@ -83,6 +84,9 @@ public class CharacterLogic : MonoBehaviour
                 break;
 
             case CHAR_STATES.DOING_ACTION:
+                break;
+            case CHAR_STATES.KICK:
+                animator.SetBool("kick", true);
                 break;
         }
 

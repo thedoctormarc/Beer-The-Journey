@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 488788}
   - component: {fileID: 3339874}
   - component: {fileID: 2392894}
+  - component: {fileID: 3833211728112342801}
   m_Layer: 0
   m_Name: SM_Veh_Car_Ambo_Wheel_fr
   m_TagString: Untagged
@@ -162,6 +163,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3833211728112342801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e0c482f24480441a4da95adb2bc376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin_speed: 0.02
+  backwards: 0
 --- !u!1 &125518
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +188,7 @@ GameObject:
   - component: {fileID: 448186}
   - component: {fileID: 3337738}
   - component: {fileID: 2333616}
+  - component: {fileID: 7058879096582255002}
   m_Layer: 0
   m_Name: SM_Veh_Car_Ambo_Wheel_rl
   m_TagString: Untagged
@@ -243,6 +259,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7058879096582255002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e0c482f24480441a4da95adb2bc376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin_speed: 0.02
+  backwards: 0
 --- !u!1 &134248
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +284,7 @@ GameObject:
   - component: {fileID: 406608}
   - component: {fileID: 3358960}
   - component: {fileID: 2323252}
+  - component: {fileID: 9128415500528631999}
   m_Layer: 0
   m_Name: SM_Veh_Car_Ambo_Wheel_fl
   m_TagString: Untagged
@@ -324,6 +355,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &9128415500528631999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e0c482f24480441a4da95adb2bc376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin_speed: 0.02
+  backwards: 0
 --- !u!1 &142752
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +380,7 @@ GameObject:
   - component: {fileID: 456644}
   - component: {fileID: 3367310}
   - component: {fileID: 2372614}
+  - component: {fileID: 3444190591340749871}
   m_Layer: 0
   m_Name: SM_Veh_Car_Ambo_Wheel_rr
   m_TagString: Untagged
@@ -405,6 +451,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3444190591340749871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e0c482f24480441a4da95adb2bc376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin_speed: 0.02
+  backwards: 0
 --- !u!1 &148626
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +558,8 @@ GameObject:
   - component: {fileID: 3301166}
   - component: {fileID: 2303650}
   - component: {fileID: -4734196311163540355}
+  - component: {fileID: 1838491909}
+  - component: {fileID: 1838491908}
   m_Layer: 0
   m_Name: SM_Veh_Car_Ambo_01
   m_TagString: Untagged
@@ -525,6 +587,7 @@ Transform:
   - {fileID: 488788}
   - {fileID: 448186}
   - {fileID: 456644}
+  - {fileID: 6035502469281701285}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -591,6 +654,40 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 916b5bf2becb29f46b894a059d247f38, type: 3}
+--- !u!95 &1838491909
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164098}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a6d834f7b0b100640a0762bd5d66dacf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1838491908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da901fa77e490dc4189e097b64295a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  curve_go: {fileID: 0}
+  intersectionPosition: 0
 --- !u!1 &174714
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,3 +1095,78 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &5787346271661598372
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 463928}
+    m_Modifications:
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.665
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.325
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.449
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6328567
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.77426887
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -281.478
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3179387117789862079, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_Name
+      value: Smoke
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44970bca39c7c5b4faf1e1decf4311e1, type: 3}
+--- !u!4 &6035502469281701285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5787346271661598372}
+  m_PrefabAsset: {fileID: 0}

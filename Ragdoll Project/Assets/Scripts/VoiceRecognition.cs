@@ -22,11 +22,18 @@ public class VoiceRecognition : MonoBehaviour
         actions.Add("stop", StopAction);
         actions.Add("left", Left);
         actions.Add("right", Right);
+        actions.Add("patada", Kick);
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();
     }
+
+    private void Kick()
+    {
+        character_logic.SetCharacterState(CHAR_STATES.KICK);
+    }
+
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {
 
@@ -48,16 +55,6 @@ public class VoiceRecognition : MonoBehaviour
     }
 
 
-    private void Back()
-    {
-        transform.Translate(-1, 0, 0);
-    }
-
-    private void Down()
-    {
-        transform.Translate(0, -1, 0);
-    }
-
     private void Right()
     {
         character_logic.SetCharacterState(CHAR_STATES.RIGHT);
@@ -67,13 +64,5 @@ public class VoiceRecognition : MonoBehaviour
         character_logic.SetCharacterState(CHAR_STATES.LEFT);
     }
 
-    //private void Arriba()
-    //{
-    //    transform.Rotate(0.0f, 0.0f, 45.0f, Space.Self);
-    //}
-    //private void Abajo()
-    //{
-    //    transform.Rotate(0.0f, 0.0f, -45.0f, Space.Self);
-    //}
 }
 

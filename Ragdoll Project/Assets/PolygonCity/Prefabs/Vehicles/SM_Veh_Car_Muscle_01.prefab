@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 434452}
   - component: {fileID: 3323882}
   - component: {fileID: 2312058}
+  - component: {fileID: 7893507339570723037}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Wheel_fr
   m_TagString: Untagged
@@ -59,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62e25ef75a2216f418d06453c9ad15cb, type: 2}
+  - {fileID: 2100000, guid: 49ef76ea47782eb4b93ac08b234fd6c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7893507339570723037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e0c482f24480441a4da95adb2bc376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin_speed: 0.02
+  backwards: 0
 --- !u!1 &135902
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +189,7 @@ GameObject:
   - component: {fileID: 3334542}
   - component: {fileID: 2383878}
   - component: {fileID: 5519081941518835345}
+  - component: {fileID: 767390017}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_01
   m_TagString: Untagged
@@ -199,6 +215,7 @@ Transform:
   - {fileID: 434452}
   - {fileID: 402862}
   - {fileID: 485822}
+  - {fileID: 4021754439372606220}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -229,7 +246,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62e25ef75a2216f418d06453c9ad15cb, type: 2}
+  - {fileID: 2100000, guid: 49ef76ea47782eb4b93ac08b234fd6c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -265,6 +282,25 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 823ed423ae6ba0d4589ddb8fe51e7f14, type: 3}
+--- !u!95 &767390017
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141870}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a6d834f7b0b100640a0762bd5d66dacf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &166256
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +312,7 @@ GameObject:
   - component: {fileID: 469928}
   - component: {fileID: 3394820}
   - component: {fileID: 2309912}
+  - component: {fileID: 7905020376568711026}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Wheel_fl
   m_TagString: Untagged
@@ -324,7 +361,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62e25ef75a2216f418d06453c9ad15cb, type: 2}
+  - {fileID: 2100000, guid: 49ef76ea47782eb4b93ac08b234fd6c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -346,6 +383,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7905020376568711026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e0c482f24480441a4da95adb2bc376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin_speed: 0.02
+  backwards: 0
 --- !u!1 &170074
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +408,7 @@ GameObject:
   - component: {fileID: 402862}
   - component: {fileID: 3313690}
   - component: {fileID: 2358478}
+  - component: {fileID: 4667939697491424465}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Wheel_rl
   m_TagString: Untagged
@@ -405,7 +457,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62e25ef75a2216f418d06453c9ad15cb, type: 2}
+  - {fileID: 2100000, guid: 49ef76ea47782eb4b93ac08b234fd6c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -427,6 +479,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4667939697491424465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e0c482f24480441a4da95adb2bc376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin_speed: 0.02
+  backwards: 0
 --- !u!1 &171134
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +504,7 @@ GameObject:
   - component: {fileID: 485822}
   - component: {fileID: 3382168}
   - component: {fileID: 2339652}
+  - component: {fileID: 8840357133880022433}
   m_Layer: 0
   m_Name: SM_Veh_Car_Muscle_Wheel_rr
   m_TagString: Untagged
@@ -486,7 +553,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62e25ef75a2216f418d06453c9ad15cb, type: 2}
+  - {fileID: 2100000, guid: 49ef76ea47782eb4b93ac08b234fd6c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -508,6 +575,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8840357133880022433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e0c482f24480441a4da95adb2bc376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spin_speed: 0.02
+  backwards: 0
 --- !u!1 &179272
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +648,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62e25ef75a2216f418d06453c9ad15cb, type: 2}
+  - {fileID: 2100000, guid: 49ef76ea47782eb4b93ac08b234fd6c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -648,7 +729,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 62e25ef75a2216f418d06453c9ad15cb, type: 2}
+  - {fileID: 2100000, guid: 49ef76ea47782eb4b93ac08b234fd6c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -670,3 +751,78 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &3765718591403651085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 484704}
+    m_Modifications:
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.665
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.325
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.449
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6328567
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.77426887
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -281.478
+      objectReference: {fileID: 0}
+    - target: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3179387117789862079, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+        type: 3}
+      propertyPath: m_Name
+      value: Smoke
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44970bca39c7c5b4faf1e1decf4311e1, type: 3}
+--- !u!4 &4021754439372606220 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 257445432615336705, guid: 44970bca39c7c5b4faf1e1decf4311e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3765718591403651085}
+  m_PrefabAsset: {fileID: 0}

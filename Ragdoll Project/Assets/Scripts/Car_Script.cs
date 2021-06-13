@@ -28,9 +28,15 @@ public class Car_Script : MonoBehaviour
 
     void Start()
     {
-     
+        if (curve_go == null)
+        {
+            this.enabled = false;
+            return;
+        }
         curve_math = curve_go.GetComponent<BGCcMath>();
         curve = curve_go.GetComponent<BGCurve>();
+
+
     
         int closest_index = 0;
         float closest_dist = float.MaxValue;
@@ -56,6 +62,8 @@ public class Car_Script : MonoBehaviour
 
         distanceAlongCurve += currentSpeed * Time.deltaTime;
         Vector3 tangent;
+
+        
         transform.position = curve_math.CalcPositionAndTangentByDistance(distanceAlongCurve, out tangent);
         transform.rotation = Quaternion.LookRotation(tangent);
 
