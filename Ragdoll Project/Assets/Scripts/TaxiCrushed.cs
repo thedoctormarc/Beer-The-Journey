@@ -8,6 +8,11 @@ public class TaxiCrushed : MonoBehaviour
     GameObject part;
     [SerializeField]
     GameObject driver;
+
+    [SerializeField]
+    Transform origin;
+    [SerializeField]
+    Transform end;
     void Start()
     {
        part = GetComponentInChildren<ParticleSystem>().gameObject;
@@ -22,6 +27,18 @@ public class TaxiCrushed : MonoBehaviour
     public void CrushFloor()
     {
         part.SetActive(true);
-
+        Instantiate(driver, transform);
+        Transform[] transforms = driver.GetComponentsInChildren<Transform>();
+        foreach(Transform t in transforms)
+        {
+            if (t.name == "Root")
+            {
+                Vector3 dir = end.position - origin.position;
+                dir = dir.normalized;
+                t.GetComponentInChildren<Rigidbody>().AddForce(dir * 50, ForceMode.Impulse);
+            }
+            else break;
+        }
     }
+
 }

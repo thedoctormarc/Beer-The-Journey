@@ -34,6 +34,8 @@ public class CarCrushEvent : MonoBehaviour
         if(other.gameObject.GetComponent<TaxiCrushed>() != null)
         {
             other.gameObject.GetComponent<TaxiCrushed>().CrushFloor();
+
+            CameraShake.Instance.ShakeCamera(10, 0.2f);
         }
     }
 }

@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3188678960919693333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2926696838662870044}
+  m_Layer: 0
+  m_Name: End_Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2926696838662870044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188678960919693333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.093, y: 1.552, z: 4.145}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5382548180581682890}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4957966963861238925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4812,6 +4842,36 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &5024718351124958803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7515795166434314030}
+  m_Layer: 0
+  m_Name: Start_Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7515795166434314030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024718351124958803}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.034, y: 1.217, z: 1.006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5382548180581682890}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5382548180581255308
 GameObject:
   m_ObjectHideFlags: 0
@@ -5452,7 +5512,6 @@ GameObject:
   - component: {fileID: 5382548180579319076}
   - component: {fileID: 1692665616309854637}
   - component: {fileID: 4085670718738234230}
-  - component: {fileID: 8330672428166578817}
   - component: {fileID: 9106007565848248842}
   - component: {fileID: 7384356385353034550}
   m_Layer: 0
@@ -5469,7 +5528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5382548180581478966}
-  m_LocalRotation: {x: -0, y: -0.87923986, z: -0, w: 0.4763794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.34, y: 0.00000047683716, z: -80.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5481,9 +5540,11 @@ Transform:
   - {fileID: 5382548180581723436}
   - {fileID: 5382548180581728716}
   - {fileID: 1025468304953492417}
+  - {fileID: 7515795166434314030}
+  - {fileID: 2926696838662870044}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -123.102, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5382548180578284684
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5541,7 +5602,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5382548180581478966}
   serializedVersion: 2
-  m_Mass: 20
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -5562,25 +5623,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1721282, y: 1.496331, z: 5.1654243}
   m_Center: {x: 0, y: 0.9742627, z: 0.11457074}
---- !u!95 &8330672428166578817
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5382548180581478966}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a6d834f7b0b100640a0762bd5d66dacf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &9106007565848248842
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5689,3 +5731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaed699322d82be4284d9e11c6382b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  driver: {fileID: 1094965277976860187, guid: 5333974aab2877446a15647f5ea4a69a, type: 3}
+  origin: {fileID: 7515795166434314030}
+  end: {fileID: 2926696838662870044}
