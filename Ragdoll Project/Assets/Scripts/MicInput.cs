@@ -50,8 +50,8 @@ public class MicInput : MonoBehaviour
     {
         Microphone.End(_device);
         Active = false;
-        if (Lights != null)
-            Lights[0].color = new Color(255.0f, 0.0f, 0.0f); //Red
+        //if (Lights[0] != null)
+        //    Lights[0].color = new Color(255.0f, 0.0f, 0.0f); //Red
 
     }
 

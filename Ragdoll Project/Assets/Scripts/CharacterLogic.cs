@@ -28,6 +28,8 @@ public class CharacterLogic : MonoBehaviour
     GameObject kickCollider;
     bool walk = false;
 
+    [SerializeField]
+    ParticleSystem kick_smoke;
     CHAR_STATES curr_state;
     // Start is called before the first frame update
     void Start()
@@ -102,11 +104,15 @@ public class CharacterLogic : MonoBehaviour
     {
         kickCollider.SetActive(true);
         animator.SetBool("kick", true);
+        yield return new WaitForSeconds(0.5f);
+        kick_smoke.gameObject.SetActive(true);
         kickCollider.SetActive(true);
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.0f);
+
 
         animator.SetBool("kick", false);
         kickCollider.SetActive(false);
+        kick_smoke.gameObject.SetActive(false);
 
         curr_state = CHAR_STATES.IDLE;
     }
