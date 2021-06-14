@@ -25,6 +25,7 @@ public class Car_Script : MonoBehaviour
     public int intersectionPosition = 0;
     bool trackCarInFront = false;
     bool active = false;
+    AudioSource aS;
 
     private void Awake()
     {
@@ -36,8 +37,13 @@ public class Car_Script : MonoBehaviour
 
     void Start()
     {
-        if (curve_go == null)
+        aS = gameObject.GetComponent<AudioSource>();
+
+        if (curve_go == null || aS == null)
         {
+            if (aS)
+                aS.enabled = false;
+
             this.enabled = false;
             return;
         }
@@ -69,6 +75,9 @@ public class Car_Script : MonoBehaviour
   
     void Update()
     {
+        aS.pitch = 1f + (currentSpeed / CarManager.instance.topSpeed);
+        aS.volume = 0.25f + (currentSpeed / CarManager.instance.topSpeed);
+
         previousState = state;
 
         CheckFront();
