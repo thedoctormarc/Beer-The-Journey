@@ -13,10 +13,13 @@ public class NPC : MonoBehaviour
     float distanceAlongCurve;
     [SerializeField]
     float speed;
+    AudioSource aS;
 
     // Start is called before the first frame update
     void Start()
     {
+        aS = gameObject.GetComponent<AudioSource>();
+
         if (curve_go == null)
         {
             this.enabled = false;
@@ -47,6 +50,12 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            OnPlayerInteraction();
+        }
+
         distanceAlongCurve += speed * Time.deltaTime;
         Vector3 tangent;
 
@@ -57,6 +66,24 @@ public class NPC : MonoBehaviour
         if (distanceAlongCurve > curve_math.GetDistance())
         {
             distanceAlongCurve = 0f;
+        }
+    }
+
+    public void OnPlayerInteraction()
+    {
+        if (aS.isPlaying == false)
+        {
+            aS.Play();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject go = collision.gameObject;
+
+        if (go.CompareTag("Player"))
+        {
+            OnPlayerInteraction();
         }
     }
 }

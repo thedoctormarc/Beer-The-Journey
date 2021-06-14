@@ -24,7 +24,7 @@ public class Car_Script : MonoBehaviour
   //  [HideInInspector]
     public int intersectionPosition = 0;
     bool trackCarInFront = false;
-
+    bool active = false;
 
     private void Awake()
     {
@@ -41,6 +41,9 @@ public class Car_Script : MonoBehaviour
             this.enabled = false;
             return;
         }
+
+        active = true;
+
         curve_math = curve_go.GetComponent<BGCcMath>();
         curve = curve_go.GetComponent<BGCurve>();
 
@@ -163,10 +166,15 @@ public class Car_Script : MonoBehaviour
         foreach (var hit in hits)
         {
             Car_Script car = hit.transform.gameObject.GetComponent<Car_Script>();
+
             Intersection inter = hit.transform.gameObject.GetComponent<Intersection>();
 
             if (car != null)
             {
+
+                if (car.active == false)
+                    continue;
+
                 if (car.curve_go == curve_go) // only detect in the same lane
                 {
 
