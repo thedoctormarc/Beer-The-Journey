@@ -31,5 +31,9 @@ public class CarCrushEvent : MonoBehaviour
 
             Instantiate(car,startpoint.transform.position, startpoint.transform.rotation);
         }
+        if(other.gameObject.GetComponent<TaxiCrushed>() != null)
+        {
+            other.gameObject.GetComponent<TaxiCrushed>().CrushFloor();
+        }
     }
 }
