@@ -14,11 +14,14 @@ public class NPC : MonoBehaviour
     [SerializeField]
     float speed;
     AudioSource aS;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         aS = gameObject.GetComponent<AudioSource>();
+        anim = gameObject.GetComponent<Animator>();
+
 
         if (curve_go == null)
         {
@@ -50,6 +53,10 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (anim.GetBool("angry") && aS.isPlaying == false)
+        {
+            anim.SetBool("angry", false);
+        }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -73,6 +80,7 @@ public class NPC : MonoBehaviour
     {
         if (aS.isPlaying == false)
         {
+            anim.SetBool("angry", true);
             aS.Play();
         }
     }
