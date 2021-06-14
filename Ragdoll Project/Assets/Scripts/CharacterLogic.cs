@@ -24,7 +24,8 @@ public class CharacterLogic : MonoBehaviour
     Animator animator;
     [SerializeField]
     GameObject player;
-
+    [SerializeField]
+    GameObject kickCollider;
     bool walk = false;
 
     CHAR_STATES curr_state;
@@ -32,6 +33,8 @@ public class CharacterLogic : MonoBehaviour
     void Start()
     {
         curr_state = CHAR_STATES.IDLE;
+        kickCollider.SetActive(false);
+        
     }
     public void SetCharacterState(CHAR_STATES state)
     {
@@ -86,12 +89,27 @@ public class CharacterLogic : MonoBehaviour
             case CHAR_STATES.DOING_ACTION:
                 break;
             case CHAR_STATES.KICK:
-                animator.SetBool("kick", true);
+               // animator.SetBool("kick", false);
+                StartCoroutine(Kicking());
+                curr_state = CHAR_STATES.DOING_ACTION;
+
                 break;
         }
 
     }
    
+    IEnumerator Kicking()
+    {
+        kickCollider.SetActive(true);
+        animator.SetBool("kick", true);
+        kickCollider.SetActive(true);
+        yield return new WaitForSeconds(1.3f);
+
+        animator.SetBool("kick", false);
+        kickCollider.SetActive(false);
+
+        curr_state = CHAR_STATES.IDLE;
+    }
     IEnumerator TurnRight()
     {
         animator.SetBool("walk", false);
