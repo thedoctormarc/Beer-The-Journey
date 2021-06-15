@@ -74,13 +74,19 @@ public class CharacterLogic : MonoBehaviour
                 break;
             case CHAR_STATES.WALKING_FORWARD:
 
-                Vector3 localForward = player.transform.worldToLocalMatrix.MultiplyVector(player.transform.forward);
-                Vector3 direction = localForward.normalized;
-                Debug.Log("direction" + direction);
-                float targetAngle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-                hipJoint.targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
-                hipRigidBody.AddForce(direction * speed);
+                Vector3 world_forward = hipRigidBody.GetComponent<Transform>().transform.TransformDirection(new Vector3(0,0,1));
+                //Vector3 local = transform.InverseTransformDirection(new Vector3(0, 0, 1));
+
+                hipRigidBody.AddForce(world_forward.normalized * speed);
                 animator.SetBool("walk", true);
+
+                //Vector3 localForward = player.transform.worldToLocalMatrix.MultiplyVector(player.transform.forward);
+                //Vector3 direction = localForward.normalized;
+                //Debug.Log("direction" + direction);
+                //float targetAngle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
+                //hipJoint.targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+                //hipRigidBody.AddForce(direction * speed);
+                //animator.SetBool("walk", true);
                 break;
 
             case CHAR_STATES.LEFT:
@@ -117,9 +123,9 @@ public class CharacterLogic : MonoBehaviour
                 break;
         }
 
-        CheckInvulerability();
-        if(Dead)
-            Death();
+        //CheckInvulerability();
+        //if(Dead)
+        //    Death();
 
     }
 
@@ -135,7 +141,6 @@ public class CharacterLogic : MonoBehaviour
 
     IEnumerator Kicking()
     {
-        kickCollider.SetActive(true);
         animator.SetBool("kick", true);
         yield return new WaitForSeconds(0.5f);
         kick_smoke.gameObject.SetActive(true);
