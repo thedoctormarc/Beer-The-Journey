@@ -12,7 +12,7 @@ public class kid_movement : MonoBehaviour
     GameObject target;
 
     [SerializeField]
-    float detection_rad;
+    float detection_rad =100f;
 
     Animator animator;
     Vector3 dir;
