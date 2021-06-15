@@ -274,6 +274,8 @@ public class Car_Script : MonoBehaviour
 
             dir = -dir.normalized;
             collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * 200, ForceMode.Impulse);
+
+            collision.gameObject.GetComponentInParent<CharacterLogic>().GetDamage();
         }
     }
 

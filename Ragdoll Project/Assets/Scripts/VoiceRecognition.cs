@@ -23,6 +23,9 @@ public class VoiceRecognition : MonoBehaviour
         actions.Add("left", Left);
         actions.Add("right", Right);
         actions.Add("patada", Kick);
+        actions.Add("revive", Revive);
+        actions.Add("muere", Muere);
+
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
@@ -32,6 +35,17 @@ public class VoiceRecognition : MonoBehaviour
     private void Kick()
     {
         character_logic.SetCharacterState(CHAR_STATES.KICK);
+
+    }
+
+    private void Revive()
+    {
+        character_logic.Respawn();
+    }
+
+    private void Muere()
+    {
+        character_logic.Kill();
     }
 
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)

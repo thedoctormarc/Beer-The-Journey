@@ -31,23 +31,42 @@ public class CharacterLogic : MonoBehaviour
     [SerializeField]
     ParticleSystem kick_smoke;
     CHAR_STATES curr_state;
+
+    int life = 100;
+    public RectTransform lifeBar;
+    int invulnerabilityTime = 1;
+    float invulnerabilityTimer = 0.0f;
+    bool ReadyToGetDamage = true;
+    public int damage = 25;
+
+    public RectTransform GameOver;
+    bool Dead = false;
+
+    Vector3 initPos;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         curr_state = CHAR_STATES.IDLE;
         kickCollider.SetActive(false);
-        
+        initPos = new Vector3(6.53f, 1.77f, -92.03f);
+
+
     }
     public void SetCharacterState(CHAR_STATES state)
     {
-        curr_state = state;
+        if (!Dead)
+            curr_state = state;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        switch(curr_state)
+        switch (curr_state)
         {
             case CHAR_STATES.IDLE:
 
@@ -72,7 +91,7 @@ public class CharacterLogic : MonoBehaviour
 
                 StartCoroutine(TurnLeft());
                 curr_state = CHAR_STATES.DOING_ACTION;
- 
+
                 break;
 
             case CHAR_STATES.RIGHT:
@@ -91,15 +110,29 @@ public class CharacterLogic : MonoBehaviour
             case CHAR_STATES.DOING_ACTION:
                 break;
             case CHAR_STATES.KICK:
-               // animator.SetBool("kick", false);
+                // animator.SetBool("kick", false);
                 StartCoroutine(Kicking());
                 curr_state = CHAR_STATES.DOING_ACTION;
 
                 break;
         }
 
+        CheckInvulerability();
+        if(Dead)
+            Death();
+
     }
-   
+
+    private void CheckInvulerability()
+    {
+        if (!ReadyToGetDamage)
+        {
+            invulnerabilityTimer += Time.deltaTime;
+            if (invulnerabilityTimer >= invulnerabilityTime)
+                ReadyToGetDamage = true;
+        }
+    }
+
     IEnumerator Kicking()
     {
         kickCollider.SetActive(true);
@@ -149,6 +182,54 @@ public class CharacterLogic : MonoBehaviour
         }
         //animator.SetBool("right", false);
         curr_state = CHAR_STATES.IDLE;
+    }
+
+    public void GetDamage()
+    {
+        if(life > 0 && ReadyToGetDamage)
+        {
+            life -= damage;
+            lifeBar.sizeDelta = new Vector2(life, lifeBar.sizeDelta.y);
+            ReadyToGetDamage = false;
+            if (life <= 0)
+            {
+                GameOver.gameObject.SetActive(true);
+                SetCharacterState(CHAR_STATES.IDLE);
+                Dead = true;
+            }
+
+        }
+    }
+    private void Death()
+    {
+        
+        if (GameOver.sizeDelta.x < 100) 
+            GameOver.sizeDelta = new Vector2(GameOver.sizeDelta.x + 2, GameOver.sizeDelta.y + 2);
+    }
+
+    public void Kill()
+    {
+        Dead = true;
+    }
+
+    public void Respawn()
+    {
+        if (Dead)
+        {
+            transform.position = initPos;
+
+            life = 100;
+
+            lifeBar.sizeDelta = new Vector2(life, life );
+            GameOver.sizeDelta = new Vector2(0, 0);
+            GameOver.gameObject.SetActive(false);
+            Dead = false;
+        }
+
+    }
+    public bool GetDead()
+    {
+        return Dead;
     }
 
 
