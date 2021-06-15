@@ -157,7 +157,7 @@ public class CharacterLogic : MonoBehaviour
         float rotation = tmp + 90;
         while(tmp <= rotation)
         {
-            tmp += 0.5f;
+            tmp += 1f;
             //hipJoint.targetRotation = Quaternion.Euler(0f, tmp, 0f);
             //player.transform.localRotation = Quaternion.Euler(0, tmp, 0);
             player.transform.rotation = Quaternion.Euler(0f, tmp, 0f);
@@ -175,7 +175,7 @@ public class CharacterLogic : MonoBehaviour
         float rotation = tmp - 90;
         while (tmp >= rotation)
         {
-            tmp -= 0.5f;
+            tmp -= 1f;
             //hipJoint.targetRotation = Quaternion.Euler(0f, tmp, 0f);
             player.transform.rotation = Quaternion.Euler(0f, tmp, 0f);
             yield return null;
