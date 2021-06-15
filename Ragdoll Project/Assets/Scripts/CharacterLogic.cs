@@ -193,8 +193,6 @@ public class CharacterLogic : MonoBehaviour
             ReadyToGetDamage = false;
             if (life <= 0)
             {
-                GameOver.gameObject.SetActive(true);
-                SetCharacterState(CHAR_STATES.IDLE);
                 Dead = true;
             }
 
@@ -202,7 +200,9 @@ public class CharacterLogic : MonoBehaviour
     }
     private void Death()
     {
-        
+        GameOver.gameObject.SetActive(true);
+        SetCharacterState(CHAR_STATES.IDLE);
+
         if (GameOver.sizeDelta.x < 100) 
             GameOver.sizeDelta = new Vector2(GameOver.sizeDelta.x + 2, GameOver.sizeDelta.y + 2);
     }
