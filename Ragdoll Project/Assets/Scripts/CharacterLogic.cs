@@ -123,9 +123,9 @@ public class CharacterLogic : MonoBehaviour
                 break;
         }
 
-        //CheckInvulerability();
-        //if(Dead)
-        //    Death();
+        CheckInvulerability();
+        if(Dead)
+            Death();
 
     }
 
